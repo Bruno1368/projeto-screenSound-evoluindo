@@ -15,6 +15,14 @@ internal class Program
         bandasRegistradas.Add(ira.Nome, ira);
         bandasRegistradas.Add(beatles.Nome, beatles);
 
+        Dictionary<int, Menu> opcoes = new();
+        opcoes.Add(1, new MenuRegistrarBanda());
+        opcoes.Add(2, new MenuRegistrarAlbum());
+        opcoes.Add(3, new MenuMostrarBandasRegistradas());
+        opcoes.Add(4, new MenuAvaliarBanda());
+        opcoes.Add(5, new MenuExibirDetalhes());
+        opcoes.Add(6, new MenuSair());
+
         void ExibirLogo()
         {
             Console.WriteLine(@"
@@ -42,6 +50,16 @@ internal class Program
             Console.Write("\nDigite a sua opção: ");
             string opcaoEscolhida = Console.ReadLine()!;
             int opcaoEscolhidaNumerica = int.Parse(opcaoEscolhida);
+
+            if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
+            {
+                Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
+            }
+            else
+            {
+                Console.WriteLine("Opção inválida");
+            }
+
 
             switch (opcaoEscolhidaNumerica)
             {
@@ -71,7 +89,7 @@ internal class Program
                     ExibirOpcoesDoMenu();
                     break;
                 case -1:
-                    Console.WriteLine("Tchau tchau :)");
+                    MenuSair sair = new MenuSair();
                     break;
                 default:
                     Console.WriteLine("Opção inválida");
