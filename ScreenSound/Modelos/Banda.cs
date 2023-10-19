@@ -11,6 +11,8 @@ internal class Banda : IAvaliavel  //sintaxe de banda implementa avaliavel
     }
 
     public string Nome { get; }
+
+    public string? Resumo { get; set; }
     public double Media
     {
         get
