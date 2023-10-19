@@ -5,7 +5,7 @@ using ScreenSound.Modelos;
 
 internal class MenuRegistrarBanda : Menu
 {
-    public override async void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
         base.Executar(bandasRegistradas);
         ExibirTituloDaOpcao("Registro das bandas");
@@ -13,17 +13,19 @@ internal class MenuRegistrarBanda : Menu
         string nomeDaBanda = Console.ReadLine()!;
         Banda banda = new Banda(nomeDaBanda);
         bandasRegistradas.Add(nomeDaBanda, banda);
+        //cria o cliente, instanciando openai
         var client = new OpenAIAPI("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"); // nova sintaxe para instancionar objetos de classes, como parametro a api key do gpt
-
+        //inicia um chat
         var chat = client.Chat.CreateConversation();
+        // envia a mensagem
+        chat.AppendSystemMessage($"Resuma a banda {nomeDaBanda} em um parágrafo. Adote um estilo informal.");
+        //pega a resposta
+        string resposta = chat.GetResponseFromChatbotAsync().GetAwaiter().GetResult(); // sintaxe além da async await
 
-        chat.AppendSystemMessage("Resuma a banda ira! em um parágrafo. Adote um estilo informal.");
+        banda.Resumo = resposta;
 
-        string resposta = await chat.GetResponseFromChatbotAsync();
-
-        System.Console.WriteLine(resposta);
-        Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso!");
-        Thread.Sleep(4000);
+        Console.WriteLine("Digite uma tecla para votar ao menu principal");
+        Console.ReadKey();
         Console.Clear();
 
     }
