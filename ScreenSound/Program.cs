@@ -54,47 +54,14 @@ internal class Program
             if (opcoes.ContainsKey(opcaoEscolhidaNumerica))
             {
                 Menu menuASerExibido = opcoes[opcaoEscolhidaNumerica];
+                menuASerExibido.Executar(bandasRegistradas);
+                if(opcaoEscolhidaNumerica > 0) ExibirOpcoesDoMenu();
             }
             else
             {
                 Console.WriteLine("Opção inválida");
             }
 
-
-            switch (opcaoEscolhidaNumerica)
-            {
-                case 1:
-                    MenuRegistrarBanda registraBanda = new MenuRegistrarBanda();
-                    registraBanda.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu();
-                    break;
-                case 2:
-                    MenuRegistrarAlbum registraAlbum = new MenuRegistrarAlbum();
-                    registraAlbum.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu();
-                    break;
-                case 3:
-                    MenuMostrarBandasRegistradas bandas = new MenuMostrarBandasRegistradas();
-                    bandas.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu();
-                    break;
-                case 4:
-                    MenuAvaliarBanda avalia = new MenuAvaliarBanda();
-                    avalia.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu();
-                    break;
-                case 5:
-                    MenuExibirDetalhes detalhes = new MenuExibirDetalhes();
-                    detalhes.Executar(bandasRegistradas);
-                    ExibirOpcoesDoMenu();
-                    break;
-                case -1:
-                    MenuSair sair = new MenuSair();
-                    break;
-                default:
-                    Console.WriteLine("Opção inválida");
-                    break;
-            }
         }
 
         ExibirOpcoesDoMenu();

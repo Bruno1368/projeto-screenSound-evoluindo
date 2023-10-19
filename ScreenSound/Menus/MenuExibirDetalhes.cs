@@ -5,9 +5,9 @@ namespace ScreenSound.Menus;
 internal class MenuExibirDetalhes : Menu //sintaxe em csharp para dizer que a classe menuavaliarbanda herda de menu
 {
 
-    public void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)// palavra reservada override para dizer que vai ser sobrescrito
     {
-        Console.Clear();
+       base.Executar(bandasRegistradas);//palavra reservada base para dizer que quer reutilizar o que está no metodo executar da classe mae
         ExibirTituloDaOpcao("Exibir detalhes da banda");
         Console.Write("Digite o nome da banda que deseja conhecer melhor: ");
         string nomeDaBanda = Console.ReadLine()!;

@@ -4,9 +4,9 @@ namespace ScreenSound.Menus;
 
 internal class MenuAvaliarBanda : Menu //sintaxe em csharp para dizer que a classe menuavaliarbanda herda de menu
 {
-    public void Executar(Dictionary<string, Banda> bandasRegistradas)
+    public override void Executar(Dictionary<string, Banda> bandasRegistradas)
     {
-        Console.Clear();
+        base.Executar(bandasRegistradas);
         ExibirTituloDaOpcao("Avaliar banda");
         Console.Write("Digite o nome da banda que deseja avaliar: ");
         string nomeDaBanda = Console.ReadLine()!;

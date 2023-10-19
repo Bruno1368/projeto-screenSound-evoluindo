@@ -13,4 +13,9 @@ internal class Menu
         Console.WriteLine(asteriscos + "\n");
     }
 
+    public virtual void Executar(Dictionary<string, Banda> bandasRegistradas)//palavra reservada "virtual para dizer que o metodo executar pode ser sobreescrito"
+    {
+        Console.Clear();
+    }
+
 }
